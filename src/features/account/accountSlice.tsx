@@ -34,16 +34,16 @@ export default function accountReducer(state = initialStateAccount, action:{payl
 
 
   
-export function deposit(depositValue:number){
+export function deposit(depositValue:number | string){
     return {type:"account/deposit",payload:depositValue}
 }
 
 
-export function withdraw(amount:number){
+export function withdraw(amount:number|string){
     return {type:"account/withdraw",payload:amount}
 }
 
-export function requestLoan(amount:number,purpose:string){
+export function requestLoan(amount:number|string,purpose:string){
     return {type:"account/requestLoan",payload:{amount,purpose:purpose}}
 }
 
