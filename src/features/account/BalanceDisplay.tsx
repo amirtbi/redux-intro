@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 function formatCurrency(value:string) {
     return new Intl.NumberFormat("en", {
@@ -7,10 +7,16 @@ function formatCurrency(value:string) {
     }).format(value);
   }
   
-  function BalanceDisplay() {
-    const balance = useSelector(store=>store.account.balance)
-    console.log(balance)
-    return <div className="balance">{balance ? formatCurrency(balance) : 0}</div>;
+  function BalanceDisplay(props:{balance:string,loan:string}) {
+    console.log("loan",props.loan)
+    return <div className="balance">{props.balance ? formatCurrency(props.balance) : 0}</div>;
   }
   
-  export default BalanceDisplay;
+
+  function mapStatetoProps(state:any){
+    return {
+      balance:state.account.balance,
+    }
+  }
+  // eslint-disable-next-line react-refresh/only-export-components
+  export default connect(mapStatetoProps)(BalanceDisplay);
