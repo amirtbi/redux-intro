@@ -7,16 +7,21 @@ function formatCurrency(value:string) {
     }).format(value);
   }
   
-  function BalanceDisplay(props:{balance:string,loan:string}) {
-    console.log("loan",props.loan)
-    return <div className="balance">{props.balance ? formatCurrency(props.balance) : 0}</div>;
+  function BalanceDisplay() {
+    // Modern way 
+    const balance = useSelector(store=>store.account.balance)
+    return <div className="balance">{balance ? formatCurrency(balance) : 0}</div>;
   }
   
 
-  function mapStatetoProps(state:any){
-    return {
-      balance:state.account.balance,
-    }
-  }
+  /**
+   * Old way
+   */
+  // function mapStatetoProps(state:any){
+  //   return {
+  //     balance:state.account.balance,
+  //     loan:state.account.loan
+  //   }
+  // }
   // eslint-disable-next-line react-refresh/only-export-components
-  export default connect(mapStatetoProps)(BalanceDisplay);
+  export default BalanceDisplay  
